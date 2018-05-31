@@ -1,0 +1,40 @@
+{
+  "name": "eslint-config-djantajs",
+  "version": "0.0.0",
+  "license": "MIT",
+  "description": "djantajs shared eslint configuration",
+  "engines": {
+    "node": ">=7.10.0",
+    "npm": ">=4.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/djanta/eslint-config-djantajs.git"
+  },
+  "keywords": [
+    "djanta",
+    "djantajs",
+    "eslint",
+    "coding-style",
+    "stype"
+  ],
+  "author": "team.dev@djanta.io",
+  "bugs": {
+    "url": "https://github.com/djanta/eslint-config-djantajs/issues"
+  },
+  "homepage": "https://djantajs.io",
+  "main": "index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "es6-promise-loader": "^1.0.1",
+    "rimraf": "^2.5.2",
+    "eslint": "^4.1.1",
+    "mocha": "^4.0.1",
+    "assert": "^1.4.1"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/_mocha ./test/**/**/*.spec.js --recursive --timeout 360 --expose-gc --colors"
+  }
+}
