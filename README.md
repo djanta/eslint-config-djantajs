@@ -29,7 +29,7 @@ Once the `eslint-config-djantajs` package is installed, you can use it by specif
 
 ### Using the `djantajs` config with `eslint:recommended`
 
-There are several rules in the [`eslint:recommended` ruleset](http://eslint.org/docs/rules/) that Google style is not opinionated about that you might want to enforce in your project.
+There are several rules in the [`eslint:recommended` ruleset](http://eslint.org/docs/rules/) that style is not opinionated about that you might want to enforce in your project.
 
 To use this coding style in conjunction with ESLint's recommended rule set, extend them both, making sure to list `djantajs` last:
 
