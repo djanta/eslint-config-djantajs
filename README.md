@@ -1,9 +1,11 @@
 # eslint-config-djantajs
 
+[![npm version](https://img.shields.io/npm/v/eslint-config-djantajs?style=flat-square)](https://www.npmjs.com/package/eslint-config-djantajs)
+[![npm downloads](https://img.shields.io/npm/dm/eslint-config-djantajs.svg?style=flat-square)](https://www.npmjs.com/package/eslint-config-djantajs)
 [![Build Status](https://travis-ci.org/djanta/eslint-config-djantajs.svg?branch=master)](https://travis-ci.org/djanta/eslint-config-djantajs)
+[![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg?style=flat-square)](https://gitter.im/djantaio/tools?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-> ESLint [shareable config](http://eslint.org/docs/developer-guide/shareable-configs.html) for the [Google JavaScript style guide (ES2015+ version)](https://djanta.github.io/styleguide/jsguide.html)
-
+> djantajs shared coding style
 
 ## Installation
 
@@ -29,7 +31,7 @@ Once the `eslint-config-djantajs` package is installed, you can use it by specif
 
 There are several rules in the [`eslint:recommended` ruleset](http://eslint.org/docs/rules/) that Google style is not opinionated about that you might want to enforce in your project.
 
-To use Google style in conjunction with ESLint's recommended rule set, extend them both, making sure to list `djantajs` last:
+To use this coding style in conjunction with ESLint's recommended rule set, extend them both, making sure to list `djantajs` last:
 
 ```js
 {
