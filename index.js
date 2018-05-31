@@ -55,7 +55,7 @@ module.exports = {
       requireParamDescription: false,
       requireReturnDescription: false,
       requireReturn: false,
-      prefer: {returns: 'return'},
+      prefer: { returns: 'return' },
     }],
     // 'valid-typeof': 2 // eslint:recommended
 
@@ -75,7 +75,7 @@ module.exports = {
     // 'default-case': 0,
     // 'dot-location': 0,
     // 'dot-notation': 0,
-    // 'eqeqeq': 0,
+    'eqeqeq': ['error', 'always'],
     'guard-for-in': 2,
     // 'no-alert': 0,
     'no-caller': 2,
@@ -137,7 +137,7 @@ module.exports = {
     // Strict Mode
     // http://eslint.org/docs/rules/#strict-mode
     // -----------------------------------------
-    // 'strict': 0,
+    'strict': ['error', 'global'],
 
     // Variables
     // http://eslint.org/docs/rules/#variables
@@ -152,7 +152,7 @@ module.exports = {
     // 'no-undef': 2, // eslint:recommended
     // 'no-undef-init': 0,
     // 'no-undefined': 0,
-    'no-unused-vars': [2, {args: 'none'}], // eslint:recommended
+    'no-unused-vars': [2, { args: 'none' }], // eslint:recommended
     // 'no-use-before-define': 0,
 
     // Node.js and CommonJS
@@ -178,9 +178,9 @@ module.exports = {
     'array-element-newline': 0, // eslint:recommended
     'block-spacing': [2, 'never'],
     'brace-style': 2,
-    'camelcase': [2, {properties: 'never'}],
+    'camelcase': [2, { properties: 'never' }],
     // 'capitalized-comments': 0,
-    'comma-dangle': [2, 'always-multiline'],
+    'comma-dangle': [2, 'only-multiline', { 'functions': 'never' }],
     'comma-spacing': 2,
     'comma-style': 2,
     'computed-property-spacing': 2,
@@ -193,8 +193,7 @@ module.exports = {
     // 'id-blacklist': 0,
     // 'id-length': 0,
     // 'id-match': 0,
-    // 'indent': 0, // TODO(philipwalton): this rule isn't compatible with
-    // Google's 4-space indent for line continuations.
+    // 'indent': ['error', 2, { 'VariableDeclarator': 1 }], // https://eslint.org/docs/3.0.0/rules/indent#enforce-consistent-indentation-indent
     // 'jsx-quotes': 0,
     'key-spacing': 2,
     'keyword-spacing': 2,
@@ -226,7 +225,7 @@ module.exports = {
     // 'no-mixed-operators': 0,
     'no-mixed-spaces-and-tabs': 2, // eslint:recommended
     // 'no-multi-assign': 0,
-    'no-multiple-empty-lines': [2, {max: 2}],
+    'no-multiple-empty-lines': [2, { max: 2 }],
     // 'no-negated-condition': 0,
     // 'no-nested-ternary': 0,
     'no-new-object': 2,
@@ -240,8 +239,10 @@ module.exports = {
     // 'no-whitespace-before-property': 0,
     // 'nonblock-statement-body-position': 0,
     // 'object-curly-newline': 0,
-    'object-curly-spacing': 2,
-    // 'object-property-newline': 0,
+    'object-curly-spacing': ['error', 'always'],
+    'object-property-newline': ['error', {
+      'allowMultiplePropertiesPerLine': true
+    }],
     'one-var': [2, {
       var: 'never',
       let: 'never',
@@ -253,7 +254,7 @@ module.exports = {
     'padded-blocks': [2, 'never'],
     // 'padding-line-between-statements': 0,
     'quote-props': [2, 'consistent'],
-    'quotes': [2, 'single', {allowTemplateLiterals: true}],
+    'quotes': [2, 'single', { allowTemplateLiterals: true }],
     'require-jsdoc': [2, {
       require: {
         FunctionDeclaration: true,
