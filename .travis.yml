@@ -9,10 +9,10 @@ branches:
   except:
     - "/^pr\\..*/"
     - "/^features\\..*/"
-  only:
-    - master
-    - develop
-    - "/^v[0-9]+\\.){0,2}(\\*|[0-9]+"
+  #only:
+  #  - master
+  #  - develop
+  #  - "/^v[0-9]+\\.){0,2}(\\*|[0-9]+"
 before_install:
   - git clone https://github.com/djanta/travis-npm-deploy.git ~/travis-npm-deploy
   - chmod +x ~/travis-npm-deploy/deploy.sh && chmod +x ~/travis-npm-deploy/npm/*.sh
