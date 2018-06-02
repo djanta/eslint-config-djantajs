@@ -4,7 +4,7 @@
   "license": "MIT",
   "description": "djantajs shared eslint configuration",
   "engines": {
-    "node": ">=7.10.0",
+    "node": ">=7.0.0",
     "npm": ">=4.6.0"
   },
   "repository": {
@@ -22,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/djanta/eslint-config-djantajs/issues"
   },
-  "homepage": "https://djantajs.io",
+  "homepage": "https://djantajs.io?bundle=eslint-config-djantajs",
   "main": "index.js",
   "publishConfig": {
     "access": "public"
@@ -37,6 +37,16 @@
     "grunt": "^1.0.2"
   },
   "scripts": {
-    "test": "./node_modules/.bin/_mocha ./test/**/**/*.spec.js --recursive --timeout 360 --expose-gc --colors"
+    "test": "./node_modules/.bin/_mocha ./test/**/**/*.spec.js --recursive --timeout 360 --expose-gc --colors",
+    "bump-dry": "./node_modules/.bin/grunt bump --dry-run",
+    "bump": "./node_modules/.bin/grunt bump",
+    "bump-patch": "./node_modules/.bin/grunt bump:patch",
+    "bump-minor": "./node_modules/.bin/grunt bump:minor",
+    "bump-major": "./node_modules/.bin/grunt bump:major",
+    "bump-git": "./node_modules/.bin/grunt bump:git",
+    "bump-prepatch": "./node_modules/.bin/grunt bump:prepatch",
+    "bump-prerelease": "./node_modules/.bin/grunt bump:prerelease",
+    "bump-preminor": "./node_modules/.bin/grunt bump:preminor",
+    "bump-premajor": "./node_modules/.bin/grunt bump:premajor"
   }
 }
