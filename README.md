@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/eslint-config-djantajs?style=flat-square)](https://www.npmjs.com/package/eslint-config-djantajs)
 [![npm downloads](https://img.shields.io/npm/dm/eslint-config-djantajs.svg?style=flat-square)](https://www.npmjs.com/package/eslint-config-djantajs)
 [![Build Status](https://travis-ci.org/djanta/eslint-config-djantajs.svg?branch=master)](https://travis-ci.org/djanta/eslint-config-djantajs)
-[![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg?style=flat-square)](https://gitter.im/djantajs/tools?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg?style=flat)](https://gitter.im/djantajs/tools?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 > djantajs shared coding style
 
