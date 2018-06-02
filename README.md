@@ -10,7 +10,7 @@
 ## Installation
 
 ```
-$ npm install --save-dev eslint eslint-config-djantajs
+$ npm i --save-dev eslint eslint-config-djantajs
 ```
 
 
