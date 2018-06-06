@@ -72,9 +72,9 @@ module.exports = {
     // 'accessor-pairs': 0,
     'array-callback-return': 'error',
     'block-scoped-var': 'error',
-    // 'class-methods-use-this': 0,
+    'class-methods-use-this': ['error'/* , { exceptMethods: [''] } */],
     'complexity': ['error', { max: 4 }],
-    // 'consistent-return': 0
+    'consistent-return': ['error', { treatUndefinedAsUnspecified: true }],
     'curly': [2, 'multi-line'],
     // 'default-case': 0,
     // 'dot-location': 0,
