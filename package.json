@@ -15,14 +15,14 @@
     "djanta",
     "djantajs",
     "eslint",
-    "coding-style",
-    "stype"
+    "coding",
+    "style"
   ],
   "author": "team.dev@djanta.io",
   "bugs": {
     "url": "https://github.com/djanta/eslint-config-djantajs/issues"
   },
-  "homepage": "https://djantajs.io?bundle=eslint-config-djantajs",
+  "homepage": "https://djantajs.io",
   "main": "index.js",
   "publishConfig": {
     "access": "public"
