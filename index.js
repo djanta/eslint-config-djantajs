@@ -75,16 +75,21 @@ module.exports = {
     'class-methods-use-this': ['error'/* , { exceptMethods: [''] } */],
     'complexity': ['error', { max: 4 }],
     'consistent-return': ['error', { treatUndefinedAsUnspecified: true }],
-    'curly': [2, 'multi-line'],
-    // 'default-case': 0,
-    // 'dot-location': 0,
-    // 'dot-notation': 0,
+    'curly': ['error', 'multi-line', 'consistent'],
+    'default-case': ['error', {
+      commentPattern: '^(skip\\sdefault)|(ignore\\sdefault)|(no\\sdefault)'
+    }],
+    'dot-location': ['error', 'property'],
+    'dot-notation': ['error', {
+      allowKeywords: false,
+      allowPattern: '^[a-z]+(_[a-z]+)+$'
+    }],
     'eqeqeq': ['error', 'always'],
     'guard-for-in': 2,
     // 'no-alert': 0,
     'no-caller': 2,
     // 'no-case-declarations': 2, // eslint:recommended
-    // 'no-div-regex': 0,
+    'no-div-regex': 'error',
     // 'no-else-return': 0,
     'no-empty-function': 'error',
     // 'no-empty-pattern': 2, // eslint:recommended

@@ -16,6 +16,8 @@ let foo = function (a) {
         console.log('no-unsafe-finally');
       break;
       }
+
+      // ignore default
     }
   }
 };
