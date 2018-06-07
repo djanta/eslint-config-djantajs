@@ -16,7 +16,10 @@
     "djantajs",
     "eslint",
     "coding",
-    "style"
+    "style",
+    "eslin-rules",
+    "jslint",
+    "coding-style"
   ],
   "author": "team.dev@djanta.io",
   "bugs": {
