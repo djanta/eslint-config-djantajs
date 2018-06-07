@@ -17,9 +17,6 @@ let value = Reflect.get({ x: 1, y: 2 }, 'x');
 
 area(0);
 
-console.log(object);
-console.log(value);
-
 // These will false
 
 /*
@@ -27,3 +24,9 @@ console.log(value);
  var json = JSON();
  var reflect = Reflect();
  */
+
+module.exports = {
+  object: object,
+  value: value
+};
+
