@@ -74,7 +74,7 @@ module.exports = {
     'block-scoped-var': 'error',
     'class-methods-use-this': ['error'/* , { exceptMethods: [''] } */],
     'complexity': ['error', { max: 4 }],
-    'consistent-return': ['error', { treatUndefinedAsUnspecified: true }],
+    // 'consistent-return': ['error', { treatUndefinedAsUnspecified: true }],
     'curly': ['error', 'multi-line', 'consistent'],
     'default-case': ['error', {
       commentPattern: '^(skip\\sdefault)|(ignore\\sdefault)|(no\\sdefault)'
@@ -90,7 +90,7 @@ module.exports = {
     'no-caller': 2,
     // 'no-case-declarations': 2, // eslint:recommended
     'no-div-regex': 'error',
-    // 'no-else-return': 0,
+    'no-else-return': 'error',
     'no-empty-function': 'error',
     // 'no-empty-pattern': 2, // eslint:recommended
     // 'no-eq-null': 0,
@@ -167,17 +167,17 @@ module.exports = {
     // Node.js and CommonJS
     // http://eslint.org/docs/rules/#nodejs-and-commonjs
     // -------------------------------------------------
-    // 'callback-return': 0,
-    // 'global-require': 0,
-    // 'handle-callback-err': 0,
-    // 'no-buffer-constructor': 0,
-    // 'no-mixed-requires': 0,
-    // 'no-new-require': 0,
-    // 'no-path-concat': 0,
+    'callback-return': ['error', ['callback', 'cb', 'next']],
+    'global-require': 'error',
+    'handle-callback-err': ['error', '^(err|error|ex)$'],
+    'no-new-require': 'error',
+    'no-path-concat': 'error',
     // 'no-process-env': 0,
     // 'no-process-exit': 0,
     // 'no-restricted-modules': 0,
     // 'no-sync': 0,
+    // 'no-buffer-constructor': 0,
+    // 'no-mixed-requires': 0,
 
     // Stylistic Issues
     // http://eslint.org/docs/rules/#stylistic-issues
@@ -202,7 +202,7 @@ module.exports = {
     // 'id-blacklist': 0,
     // 'id-length': 0,
     // 'id-match': 0,
-    // 'indent': ['error', 2, { 'VariableDeclarator': 1 }], // https://eslint.org/docs/3.0.0/rules/indent#enforce-consistent-indentation-indent
+    // 'indent': ['error', 2, { VariableDeclarator: 1 }],
     // 'jsx-quotes': 0,
     'key-spacing': 2,
     'keyword-spacing': 2,
@@ -298,7 +298,7 @@ module.exports = {
     // http://eslint.org/docs/rules/#ecmascript-6
     // ------------------------------------------
     // 'arrow-body-style': 0,
-    'arrow-parens': [2, 'as-needed', { 'requireForBlockBody': true }],
+    'arrow-parens': [2, 'as-needed', { requireForBlockBody: true }],
     // 'arrow-spacing': 0,
     'constructor-super': 2, // eslint:recommended
     'generator-star-spacing': [2, 'after'],

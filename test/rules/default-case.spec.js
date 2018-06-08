@@ -6,8 +6,8 @@ let a = 1;
 
 switch (a) {
   case 1:
-    /* code */
-    break;
+    // code
+  break;
 
   // skip default
 }

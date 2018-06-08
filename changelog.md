@@ -6,9 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.1.1] - 2018-06-07
+## [0.1.1] - 2018-06-08
 ### Added
 - Enhancing npm `keywords` with `[eslin-rules, jslint, coding-style]`
+
+### Remove
+- Remove `consistent-return` rule due to a conflit with `no-else-return` rule
 
 ### Changed
 - Change npm download rate from monthly reporting to weekly reporting
