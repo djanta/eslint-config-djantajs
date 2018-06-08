@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.2] - 2018-06-08
 ### Added
 - Add codeclimate `Maintainability` and `Test Coverage` badges
+- Finilizing default mandatory rules implemetation
 
 ### Changed
 - Modidy npm `keywords` with `eslin-rules` to `eslint-rules`

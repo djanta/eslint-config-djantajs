@@ -26,11 +26,6 @@ node_modules
 bower_components
 vendor
 
-# Temp directories
-temp/
-test/tmp
-test/temp
-
 # Other temp
 .sass-cache
 .grunt
@@ -58,7 +53,6 @@ plugins/
 *.csproj.user
 obj/
 *.suo
-*.csproj.user
 *.DotSettings.user
 
 # Fuse
