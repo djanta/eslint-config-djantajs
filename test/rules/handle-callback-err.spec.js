@@ -16,7 +16,9 @@ let doSomething = () => {
  */
 function loadData (error, data) {
   if (error) {
+    /* eslint-disable no-console */
     console.log(error.stack);
+    /* eslint-enable no-console */
   }
   doSomething();
 }

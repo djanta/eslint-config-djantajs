@@ -17,11 +17,14 @@
     "eslint",
     "coding",
     "style",
-    "eslin-rules",
+    "eslint-rules",
     "jslint",
     "coding-style"
   ],
   "author": "team.dev@djanta.io",
+  "contributors": [
+    "Stanislas KOFFI ASSOUTOVI <stanislaska@djantajs.io> (https://github.com/stanislaska)"
+  ],
   "bugs": {
     "url": "https://github.com/djanta/eslint-config-djantajs/issues"
   },

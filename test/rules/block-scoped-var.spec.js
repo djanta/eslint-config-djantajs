@@ -13,7 +13,9 @@ function doIf () {
     build = true;
   }
 
+  /* eslint-disable no-console */
   console.log(build);
+  /* eslint-enable no-console */
 }
 
 /**

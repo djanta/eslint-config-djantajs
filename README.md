@@ -1,8 +1,10 @@
 # eslint-config-djantajs
 
 [![npm](https://img.shields.io/npm/v/eslint-config-djantajs.svg?style=flat)](https://github.com/djanta/eslint-config-djantajs)
-[![npm downloads](https://img.shields.io/npm/dw/eslint-config-djantajs.svg?style=flat-square)](https://www.npmjs.com/package/eslint-config-djantajs)
+[![npm downloads](https://img.shields.io/npm/dw/eslint-config-djantajs.svg?style=flat)](https://www.npmjs.com/package/eslint-config-djantajs)
 [![Build Status](https://travis-ci.org/djanta/eslint-config-djantajs.svg?branch=master)](https://travis-ci.org/djanta/eslint-config-djantajs)
+[![Maintainability](https://api.codeclimate.com/v1/badges/ae5094e3adb2ae9f6cee/maintainability)](https://codeclimate.com/github/djanta/eslint-config-djantajs/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/ae5094e3adb2ae9f6cee/test_coverage)](https://codeclimate.com/github/djanta/eslint-config-djantajs/test_coverage)
 [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg?style=flat)](https://gitter.im/djantajs/tools?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 > djantajs shared coding style

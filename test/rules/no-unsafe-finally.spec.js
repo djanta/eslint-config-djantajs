@@ -13,7 +13,9 @@ let foo = function (a) {
   finally {
     switch (a) {
       case 1: {
+        /* eslint-disable no-console */
         console.log('no-unsafe-finally');
+        /* eslint-enable no-console */
       break;
       }
 

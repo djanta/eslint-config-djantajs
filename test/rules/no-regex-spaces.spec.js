@@ -4,7 +4,7 @@
 
 let re = /foo {3}bar/;
 
-new RegExp('foo {3}bar');
+re = new RegExp('foo {3}bar');
 
 module.exports = re;
 

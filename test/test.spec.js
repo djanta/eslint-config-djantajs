@@ -34,7 +34,9 @@ const options = {
 
 const report = new eslint.CLIEngine(options).executeOnFiles(files);
 
+/* eslint-disable no-console */
 console.log('Result:\n%s\n', JSON.stringify(report.results, null, 2));
+/* eslint-enable no-console */
 
 assert.equal(report.errorCount, 0);
 assert.equal(report.warningCount, 0);

@@ -27,7 +27,11 @@ bar() ? a() : b();
 // conditionalAssign
 // while ((foo = bar())) {}
 
-if ((foo = bar())) { console.log(foo); }
+if ((foo = bar())) {
+  /* eslint-disable no-console */
+  console.log(foo);
+  /* eslint-enable no-console */
+}
 
 // do; while ((foo = bar()));
 
