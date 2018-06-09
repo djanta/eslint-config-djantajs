@@ -2,63 +2,63 @@ sudo: required
 language: node_js
 dist: trusty
 node_js:
-- '8'
+  - '8'
 services:
-- node
+  - node
 addons:
   code_climate:
     repo_token:
       secure: dece8qJCVRdpMJAWZ1MAN6acGstIcq2o5B9EreKESeEQzy9CkW7pWx+EfX5aRZH8w9YTGc/Qx2shYw+b3Z4925BMyvvJSpFu52HwnPZ7baSB978BVZh8dBL3CbhX8ChAdX9fjn+urVdCZPB0Al0j3CTj9GuUq7GYTZ8mWdb0X2Syl6f4Wt0tVByqWjtecyb6m1xyR1rEm9eIUSOTgZdWnPkcP8oEp21zb6EbwhaATXEN7bf+fhyHMSd7j5RN0hTX6DDz8JP/0TAd40xMjo2CSpw9VA4LW1en4AtRpMAWcX/SjtX0oLzPT7egysPTiPM0T6umkbxW7yaQfem/ChvxqO9VW1j6weytiUEN1EIOCeUFAZmslCpHPk/+PJsbNbSfmHh8SX820dYpBqqCt29UiwriVCIpG+sHaT3oQpqU25fN+00YT3wIN3K2nN2aI7/vxCyX9L/nxFKM9zCO3FppzAFK4cM/i6sNq6rRaIB872jdanIOzqjwDdevwWou5850JG0wZQ/aZ1ovbl2qVmERaij2rJvhkQJqhANXVeFUGFn9UkiglwmaUL5NOd5qju771Ue82/RsEHRQ8yijQpB1V31s4RjtHAsi9KVfZpNTVqUE+Mc+57+D5esaYPRT4bjNxQJNkup4ug7RG65mmJEB6kH7u6x9+zyQeJu+FueNo1k=
 branches:
   except:
-  - "/^pr\\..*/"
-  - "/^features\\..*/"
+    - "/^pr\\..*/"
+    - "/^features\\..*/"
 before_install:
-- git clone https://github.com/djanta/travis-npm-deploy.git ~/travis-npm-deploy
-- chmod +x ~/travis-npm-deploy/deploy.sh && chmod +x ~/travis-npm-deploy/npm/*.sh
-- bash ~/travis-npm-deploy/deploy.sh --git-config
-- npm install codeclimate-test-reporter istanbul -g
+  - git clone https://github.com/djanta/travis-npm-deploy.git ~/travis-npm-deploy
+  - chmod +x ~/travis-npm-deploy/deploy.sh && chmod +x ~/travis-npm-deploy/npm/*.sh
+  - bash ~/travis-npm-deploy/deploy.sh --git-config
+  - npm install codeclimate-test-reporter istanbul -g
 install:
-- echo "Installing ..."
-- bash ~/travis-npm-deploy/deploy.sh --install
-- npm i --verbose
+  - echo "Installing ..."
+  - bash ~/travis-npm-deploy/deploy.sh --install
+  - npm i --verbose
 script:
-- npm test
-- istanbul cover node_modules/mocha/bin/_mocha -- -R spec
+  - npm test
+  - istanbul cover node_modules/mocha/bin/_mocha -- -R spec
 after_script:
-- codeclimate-test-reporter < ./coverage/lcov.info
+  - codeclimate-test-reporter < ./coverage/lcov.info
 after_success:
-- echo "Running after success step ..."
+  - echo "Running after success step ..."
 before_deploy:
-- bash ~/travis-npm-deploy/deploy.sh login --user=$NPM_USER --password=$NPM_PWD --email=$NPM_EMAIL
+  - bash ~/travis-npm-deploy/deploy.sh login --user=$NPM_USER --password=$NPM_PWD --email=$NPM_EMAIL
 deploy:
-- provider: script
-  skip_cleanup: true
-  email: "$NPM_EMAIL"
-  script: "~/travis-npm-deploy/deploy.sh"
-  on:
-    tags: true
-    repo: djanta/eslint-config-djantajs
+  - provider: script
+    skip_cleanup: true
+    email: "$NPM_EMAIL"
+    script: "~/travis-npm-deploy/deploy.sh"
+    on:
+      tags: true
+      repo: djanta/eslint-config-djantajs
 after_deploy:
-- bash ~/travis-npm-deploy/deploy.sh logout
+  - bash ~/travis-npm-deploy/deploy.sh logout
 notifications:
   email: false
   slack:
     rooms:
-    - djantaio:1GeeSv1noSekK9to1yTqsbDw#travis-ci
-    - djantaio:1GeeSv1noSekK9to1yTqsbDw#tools
+      - djantaio:1GeeSv1noSekK9to1yTqsbDw#travis-ci
+      - djantaio:1GeeSv1noSekK9to1yTqsbDw#tools
     on_success: always
     template:
-    - Build <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) of %{repository}@%{branch}
-      by %{author} %{result} in %{duration}
+      - Build <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) of %{repository}@%{branch}
+        by %{author} %{result} in %{duration}
   webhooks:
     urls:
-    - https://webhooks.gitter.im/e/527ecb157afe8c3f6eb9
+      - https://webhooks.gitter.im/e/527ecb157afe8c3f6eb9
     on_success: change
     on_failure: always
     on_start: never
 env:
   global:
-  - secure: R7/VGfE9o2NmhkYsnOjQ/fplVtP/i9vzykeNdJeEAM5pe6DmDdsoS/PmxD/tvJG92hTOlvK8itS5j4IJoORbir9RfxKCD/GroB1XsMjOoEFqs31xabShp94rAx+ZCcrWeC2WXRYXr0m+fDT186tfakxsDqKueH8SbFf9jTjT+IG0bI1xBnAA6T+UDOg/IN9P70sc8XGhEtqEZjiJiQQ1c8gP0lcl9YFqFD/TguGAjnunf3Ewj1afxB4HhBPay3yzI5Do64ip7mh8k93Gidz0NJIzqU3YHBzZKcKUvuakqaidaGTxPR/4v8zz87TJ5Zv/JXdDqxPQVAT728ROziwuImXKFw31t+ilmQzgEZFLc6KGDi5JbpossSHxH5IiaHUyY+akrKSCdd5JhuL9g+EuNwxE1jTTvrZ3EfOmAciAWA999XnqCHKUM+JFGl075ugbFKykUK74EOTrSHEUcFWTAGkMaDsS8OYpukpGcQs1Wzbmi2BWpog9Aw0q1rAWvQXN6pX5W4RH+gvD/ff8ebxPkQq9znzx9WBHlI9gavsWp9JjZD3jzPGE4T2LYirVFNumecRJ3dnm+mbr6Iehz/dqZM0d+ZVTLdz64qsc1jed8jhwOu3U5LzG4uidZBwIdvj7VW9wFLqB1no7bi7Fxr+bdzbTeqLoVt+8NTLN+Ne+JBQ=
-  - secure: RP9n32DzxX81hdApuQJjnCGRXwUCfAUQ1YkBUWElXzfchTePQxctxsFpdfY7mX1xT3XhV6IextDylkZPbbPBOyJ3uRMN3mCxLF27NuLQ1AZcDJcR9UFICgPkGn+vwf0RzMJ0Q70tJeauANQDrRpbZWHUcdn07A41poz5RfTNC3/jgwrylwKntfcbEZ5tYZ2XbauA/YtG6zlCpLJRH67pncJAPqDmAcsxXYQYiCGnSz4P/cc4ePiDMAKgvJ+PefRDnnmxrvrNGvE8W98qvDuI/20ZZLjj0WS1Bvw4G0nMrzhOhI9PqH5Hpt1Wc0b/XqI4UXcCVJclFtJEncGU4lu/kARD0BHAYVgYCAx51UFszjfqbedQNRy5RrNP/kg2nqAt4KdRMORQ3wHPoC4lFCWj8qBbHxW1YhtFTIl17H0AefcphPszka767Y5iriCN1eq1GLZKGILdf5NKWvVo+HiZEaga/mJdVJ0ql4etws7vPM4jqTh6thp1JGDfCmS1iujEBtnXaaX6oKgl8QzC5XMIUcX4CzGSwXgOJsnPlV+vBZsrfXdVNZwfC/76QoQ9VhkCQZeL3yDI4zeVDk4/LaKzen66xE/nXxHEddS7LgnuLL3THAA1RQJBIXGoujXhJ7MGu8QOYtX5JC9FHM/y6+/l76q4kVw+wn5SGgK0HxCCXoc=
-  - secure: mzX/qjaVAVXQi6YddKNLIm/P8sIhlhKbQmj/yJTkFJ+tjbTgUJ2w2N5rFu7CLKa5BqEF5rXKw1D0LZSXid/0CrKgFAAvvDnX+yoyEhaQKgPGgRF8o6EK3+J7l057/kYeRDbk7c81f15+wakmgd5fnEOLb8kGNG5hz5L1B/fIrJhhZhqJy56x4dyfP3/pkYRNWOTHJ8AFM6RMwnH3K5t7UFXHnomqJumE6pSeziHVtBzU2vlDMpNUj8QdbX6RY+EhRnpUktYSeTJr0ykiw4rSyI6TnaepNQSMfxTiVP+YXDtBj+vMA02RgZipHshwSeLmmOzUk0x3+agrCBw/YMqD6Jw/oMX8jJfQM0p0ygVb4wef1+2hgIM6JRUhgEYVFxC2RxSGfX1IPCYGTs322l923ysSRSLeUVpJqjzKncRkdlXalzcyFDkjya0TofbUfOjAcBg5qY7vWR3Q+H0KXEAKHs0XtAzyRA5/963JvCPwCvdgnYmOGNR7J7OkBrmM5qyXQq89yVOqZWie4pLDJopOrKXDQwAs4QZabkLMdmuXg0jYLtQnTicpwjaC5xZdksoKsiU8r3ys/b2Bs04O6/vV1JBaCDMgOjCL70G8f1rWSS1jQmn0HNofoRcDImj/mdt1r/fRqjuRQZD3Nl8DZgYwFLLdmfSn40Xr4IBC/LSBeL0=
+    - secure: R7/VGfE9o2NmhkYsnOjQ/fplVtP/i9vzykeNdJeEAM5pe6DmDdsoS/PmxD/tvJG92hTOlvK8itS5j4IJoORbir9RfxKCD/GroB1XsMjOoEFqs31xabShp94rAx+ZCcrWeC2WXRYXr0m+fDT186tfakxsDqKueH8SbFf9jTjT+IG0bI1xBnAA6T+UDOg/IN9P70sc8XGhEtqEZjiJiQQ1c8gP0lcl9YFqFD/TguGAjnunf3Ewj1afxB4HhBPay3yzI5Do64ip7mh8k93Gidz0NJIzqU3YHBzZKcKUvuakqaidaGTxPR/4v8zz87TJ5Zv/JXdDqxPQVAT728ROziwuImXKFw31t+ilmQzgEZFLc6KGDi5JbpossSHxH5IiaHUyY+akrKSCdd5JhuL9g+EuNwxE1jTTvrZ3EfOmAciAWA999XnqCHKUM+JFGl075ugbFKykUK74EOTrSHEUcFWTAGkMaDsS8OYpukpGcQs1Wzbmi2BWpog9Aw0q1rAWvQXN6pX5W4RH+gvD/ff8ebxPkQq9znzx9WBHlI9gavsWp9JjZD3jzPGE4T2LYirVFNumecRJ3dnm+mbr6Iehz/dqZM0d+ZVTLdz64qsc1jed8jhwOu3U5LzG4uidZBwIdvj7VW9wFLqB1no7bi7Fxr+bdzbTeqLoVt+8NTLN+Ne+JBQ=
+    - secure: RP9n32DzxX81hdApuQJjnCGRXwUCfAUQ1YkBUWElXzfchTePQxctxsFpdfY7mX1xT3XhV6IextDylkZPbbPBOyJ3uRMN3mCxLF27NuLQ1AZcDJcR9UFICgPkGn+vwf0RzMJ0Q70tJeauANQDrRpbZWHUcdn07A41poz5RfTNC3/jgwrylwKntfcbEZ5tYZ2XbauA/YtG6zlCpLJRH67pncJAPqDmAcsxXYQYiCGnSz4P/cc4ePiDMAKgvJ+PefRDnnmxrvrNGvE8W98qvDuI/20ZZLjj0WS1Bvw4G0nMrzhOhI9PqH5Hpt1Wc0b/XqI4UXcCVJclFtJEncGU4lu/kARD0BHAYVgYCAx51UFszjfqbedQNRy5RrNP/kg2nqAt4KdRMORQ3wHPoC4lFCWj8qBbHxW1YhtFTIl17H0AefcphPszka767Y5iriCN1eq1GLZKGILdf5NKWvVo+HiZEaga/mJdVJ0ql4etws7vPM4jqTh6thp1JGDfCmS1iujEBtnXaaX6oKgl8QzC5XMIUcX4CzGSwXgOJsnPlV+vBZsrfXdVNZwfC/76QoQ9VhkCQZeL3yDI4zeVDk4/LaKzen66xE/nXxHEddS7LgnuLL3THAA1RQJBIXGoujXhJ7MGu8QOYtX5JC9FHM/y6+/l76q4kVw+wn5SGgK0HxCCXoc=
+    - secure: mzX/qjaVAVXQi6YddKNLIm/P8sIhlhKbQmj/yJTkFJ+tjbTgUJ2w2N5rFu7CLKa5BqEF5rXKw1D0LZSXid/0CrKgFAAvvDnX+yoyEhaQKgPGgRF8o6EK3+J7l057/kYeRDbk7c81f15+wakmgd5fnEOLb8kGNG5hz5L1B/fIrJhhZhqJy56x4dyfP3/pkYRNWOTHJ8AFM6RMwnH3K5t7UFXHnomqJumE6pSeziHVtBzU2vlDMpNUj8QdbX6RY+EhRnpUktYSeTJr0ykiw4rSyI6TnaepNQSMfxTiVP+YXDtBj+vMA02RgZipHshwSeLmmOzUk0x3+agrCBw/YMqD6Jw/oMX8jJfQM0p0ygVb4wef1+2hgIM6JRUhgEYVFxC2RxSGfX1IPCYGTs322l923ysSRSLeUVpJqjzKncRkdlXalzcyFDkjya0TofbUfOjAcBg5qY7vWR3Q+H0KXEAKHs0XtAzyRA5/963JvCPwCvdgnYmOGNR7J7OkBrmM5qyXQq89yVOqZWie4pLDJopOrKXDQwAs4QZabkLMdmuXg0jYLtQnTicpwjaC5xZdksoKsiU8r3ys/b2Bs04O6/vV1JBaCDMgOjCL70G8f1rWSS1jQmn0HNofoRcDImj/mdt1r/fRqjuRQZD3Nl8DZgYwFLLdmfSn40Xr4IBC/LSBeL0=
