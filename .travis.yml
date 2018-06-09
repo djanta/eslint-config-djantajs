@@ -10,22 +10,21 @@ addons:
     repo_token: 
 branches:
   except:
-  - "/^pr\\..*/"
-  - "/^features\\..*/"
+    - "/^pr\\..*/"
+    - "/^features\\..*/"
 before_install:
   - git clone https://github.com/djanta/travis-npm-deploy.git ~/travis-npm-deploy
   - chmod +x ~/travis-npm-deploy/deploy.sh && chmod +x ~/travis-npm-deploy/npm/*.sh
   - bash ~/travis-npm-deploy/deploy.sh --git-config
-  - npm install codeclimate-test-reporter istanbul -g
 install:
-  - echo "Installing ..."
   - bash ~/travis-npm-deploy/deploy.sh --install
   - npm i --verbose
 script:
   - npm test
-  - istanbul cover node_modules/mocha/bin/_mocha -- -R spec
+  - npm run-script cover
 after_script:
-  - codeclimate-test-reporter < ./coverage/lcov.info
+  - npm run-script codeclimate-publish
+  - npm run-script coveralls-publish
 after_success:
   - echo "Running after success step ..."
 before_deploy:
@@ -52,7 +51,7 @@ notifications:
         by %{author} %{result} in %{duration}
   webhooks:
     urls:
-      - https://webhooks.gitter.im/e/527ecb157afe8c3f6eb9
+      - $WEBHOOK_GITTER
     on_success: change
     on_failure: always
     on_start: never
@@ -62,3 +61,4 @@ env:
     - secure: RP9n32DzxX81hdApuQJjnCGRXwUCfAUQ1YkBUWElXzfchTePQxctxsFpdfY7mX1xT3XhV6IextDylkZPbbPBOyJ3uRMN3mCxLF27NuLQ1AZcDJcR9UFICgPkGn+vwf0RzMJ0Q70tJeauANQDrRpbZWHUcdn07A41poz5RfTNC3/jgwrylwKntfcbEZ5tYZ2XbauA/YtG6zlCpLJRH67pncJAPqDmAcsxXYQYiCGnSz4P/cc4ePiDMAKgvJ+PefRDnnmxrvrNGvE8W98qvDuI/20ZZLjj0WS1Bvw4G0nMrzhOhI9PqH5Hpt1Wc0b/XqI4UXcCVJclFtJEncGU4lu/kARD0BHAYVgYCAx51UFszjfqbedQNRy5RrNP/kg2nqAt4KdRMORQ3wHPoC4lFCWj8qBbHxW1YhtFTIl17H0AefcphPszka767Y5iriCN1eq1GLZKGILdf5NKWvVo+HiZEaga/mJdVJ0ql4etws7vPM4jqTh6thp1JGDfCmS1iujEBtnXaaX6oKgl8QzC5XMIUcX4CzGSwXgOJsnPlV+vBZsrfXdVNZwfC/76QoQ9VhkCQZeL3yDI4zeVDk4/LaKzen66xE/nXxHEddS7LgnuLL3THAA1RQJBIXGoujXhJ7MGu8QOYtX5JC9FHM/y6+/l76q4kVw+wn5SGgK0HxCCXoc=
     - secure: mzX/qjaVAVXQi6YddKNLIm/P8sIhlhKbQmj/yJTkFJ+tjbTgUJ2w2N5rFu7CLKa5BqEF5rXKw1D0LZSXid/0CrKgFAAvvDnX+yoyEhaQKgPGgRF8o6EK3+J7l057/kYeRDbk7c81f15+wakmgd5fnEOLb8kGNG5hz5L1B/fIrJhhZhqJy56x4dyfP3/pkYRNWOTHJ8AFM6RMwnH3K5t7UFXHnomqJumE6pSeziHVtBzU2vlDMpNUj8QdbX6RY+EhRnpUktYSeTJr0ykiw4rSyI6TnaepNQSMfxTiVP+YXDtBj+vMA02RgZipHshwSeLmmOzUk0x3+agrCBw/YMqD6Jw/oMX8jJfQM0p0ygVb4wef1+2hgIM6JRUhgEYVFxC2RxSGfX1IPCYGTs322l923ysSRSLeUVpJqjzKncRkdlXalzcyFDkjya0TofbUfOjAcBg5qY7vWR3Q+H0KXEAKHs0XtAzyRA5/963JvCPwCvdgnYmOGNR7J7OkBrmM5qyXQq89yVOqZWie4pLDJopOrKXDQwAs4QZabkLMdmuXg0jYLtQnTicpwjaC5xZdksoKsiU8r3ys/b2Bs04O6/vV1JBaCDMgOjCL70G8f1rWSS1jQmn0HNofoRcDImj/mdt1r/fRqjuRQZD3Nl8DZgYwFLLdmfSn40Xr4IBC/LSBeL0=
     - secure: RRCzieFrWuO85yx8OtYM7JqEWDbWgkxOrAclHWLaH+578HL88+WAKEdgY5vDkn2LM7KWlOh2WWno8EWX3dthHXBQ2rypgkW5QVgHYBYTF6FZSB9aOlN+spOXBg03xWxf89IJAUyMQDF86BEgrFHaWAKEKZlh5IliwjFMmKXa/4EYO1cWrspYGefnrDxEVsOS495f1Mn6PJujTD5OD/KIa/QnlsdR4xDJjqxIEJPMD2/6nUzWKoNuz3HpTXSpI1FLeN1UalzVMWGhu/X79ir783TuEzIYi2qDDmCgoUlRaLYe9uVgGrzBRpskReuXpHIytWcVKMRaXy7nib5n2Lgv9+MAPtgm8VLhrxnvA0LSre85+tqKQfjJf8XQ9BpyPMVOxBstNsSWlQ1foeAOcpJpffs7m8+ntIOC7Tt1gkwHxi1JFqVA7vHIgIokA/fHs4WYqwKKVinwjLHxUvRxcB1RtobDv9KI1RiI9v8dv/JvhYKqaEOMKOHrhMC/gjnspuL3hRJhslmxTotKoPNQ2A0W8a0FUUn08jAitnJTP2SX+sMviCJiAG79GTjBDkhoYQnTUahPRxIn9MZeABLnTZDttD/JpD97c5UeWnud6DugwwR9w5cEzkaLgwNvafaFCTnCqNdcUYarI+bS1oViuDXEXs+PdaLhY1SQ+djiCiAJYJo=
+    - secure: F69U+SwWXhv0nCeVsqYmQHHvjUtjUCJESMgAYubhZ5aYM6nfjPFl3fwZ4s7/ZAr+pAVDtze7ewPgXonzLpE5L/Ij/ykGiTniuVVimRETKeJy1I05y+dJeYK0LCCuKV0TMN0ApqyuvWxbeOYmrUpPkPGwCLHJfGsPODblHZ3XidpWJ2ZiGT4s34Nu3p68z5ZIdF2Sqr7aGlwlZKORZTHrRETi9yDmNWat4K+TwL2HFLooiy/sUBDsISlHM3K7u2Sev/P/7dMzDDM6SXJleIYhxo1YmnTmhRO5yD9xyTKTMlIRAsr7DAKfMdnEwxg4rw2RUqr//uR3PWzNNy+Ln5vyV+CaRO5Do++F1OEYhxoekYVjYt11oRIUX+NZlzK/pC6RdQ6w49DCXyLZsR4PoEgPFvDCzWajfPe9JcLyi/ZZX8+/4cE+NntUA5fszw/uT7+wA6Ol0s0FzKJ9DoiIwblVbI636wkYDi3xm7GCyRaPkxbRLjKfag7ucbPjBEHbvVnOqEA8jr0neB6KUsqfJG0uIO24Kpinkw88X01XYmS0/EnSThYoiRgUOIMCIBeykhtW4H393F4/M4W5yArACLJwAvxnjgQp9XGzuasqrxZ5qW28ntF2fBr5v6Rbsg6JQI81xcxkL1jryEoUO5w0AD29ifns/XTlj3Vt+cVS9YMk92o=
