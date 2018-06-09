@@ -24,7 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Adding `contributors` section into the `package.json` file
 
-## [0.1.1] - 2018-06-08`
+## [0.1.1] - 2018-06-08
 ### Added
 - Enhancing npm `keywords` with `[eslin-rules, jslint, coding-style]`
 
@@ -53,8 +53,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial public version publication.
 - Fixing travis configuration *skip_cleanup: true*
 
-[Unreleased]: https://github.com/djanta/eslint-config-djantajs/compare/v0.1.2...HEAD
-[0.1.1]: https://github.com/djanta/eslint-config-djantajs/compare/v0.1.1...v0.1.2
+[Unreleased]: https://github.com/djanta/eslint-config-djantajs/compare/v0.1.3...HEAD
+[0.1.3]: https://github.com/djanta/eslint-config-djantajs/compare/v0.1.2...v0.1.3
+[0.1.2]: https://github.com/djanta/eslint-config-djantajs/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/djanta/eslint-config-djantajs/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/djanta/eslint-config-djantajs/compare/v0.0.2...v0.1.0
 [0.0.2]: https://github.com/djanta/eslint-config-djantajs/compare/v0.0.1...v0.0.2
