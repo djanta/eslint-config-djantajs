@@ -5,6 +5,10 @@ node_js:
   - '8'
 services:
   - node
+addons:
+  code_climate:
+    repo_token:
+      secure: fhOHdW2EC12Lbb1WzO7UqXsG04OXuQ9ObqU9Z4iy5dsrgeHZyRFzy6a8My44vGnb9jFxx1zE8KgdJBWjw6Jr5iWEOy34jarOeVUDe6phVmHDXrSFD9zjyrRYG0SR7dB81Lb+pD/SE5BxB7IVDQOC2JzMFgYt6VxBZRKr+vklBUMUIZfvx0UYsu9ARcO/PrE/KevY+Hy3iUTNDQ0TaIUqHhgE+laQQ/ES1zXLv0Kn8Umgo31JaHteoKc7KSuscii3XKCWrwUgUsy12/rBVc8jJUe3l8pBtar35unY6UluEWCuJzcR9GcRz1pBh46mp+4AZaF1sVYbIGcjD5xgeKJG6jRBh6fTJyjMJU3ZKonUYzNuF0/Hysi0PDS74l3cLoIbfzpxd8Pvkzcu4uHDSE2UAFroB1bE8T/wEFol7vy5cblHjBHgaZU+MF9gXlgZr1DL+oXYDlSy42LPwx4brcErHdy4ax//8pub9SceYD1uUfCtuK/dm7UksDWWhRo55cZ/lEfD4lxqFLXK8dPFdZo0JEt4saep2692AIo1+6lcESZq6cE53Jf9CtaeKyi7JRAmA0hKWKZe7xbyiWFy01jx67Shv96wQ3K27pPBM+bm1sRUztSY91rNi1lsGp7GzOnVbWgrY+dw2eXJtuCimCrJzeThHgKaaWkPkcJW8ruNkDo=
 branches:
   except:
     - "/^pr\\..*/"
@@ -17,6 +21,7 @@ before_install:
   - git clone https://github.com/djanta/travis-npm-deploy.git ~/travis-npm-deploy
   - chmod +x ~/travis-npm-deploy/deploy.sh && chmod +x ~/travis-npm-deploy/npm/*.sh
   - bash ~/travis-npm-deploy/deploy.sh --git-config
+  - npm install codeclimate-test-reporter istanbul -g
 install:
   - echo "Installing ..."
   - bash ~/travis-npm-deploy/deploy.sh --install
@@ -24,8 +29,10 @@ install:
 script:
   - echo "Npm deploy email= $NPM_EMAIL"
   - npm test
+  - istanbul cover node_modules/mocha/bin/_mocha -- -R spec
 after_script:
   - echo "Runing after script djantajs bundle ..."
+  - codeclimate-test-reporter < ./coverage/lcov.info
 after_success:
   - echo "Running after success step ..."
 before_deploy:
