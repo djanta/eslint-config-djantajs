@@ -73,7 +73,7 @@ module.exports = {
     'array-callback-return': 'error',
     'block-scoped-var': 'error',
     'class-methods-use-this': ['error'/* , { exceptMethods: [''] } */],
-    'complexity': ['error', { max: 4 }],
+    'complexity': ['error', { max: 10 }],
     // 'consistent-return': ['error', { treatUndefinedAsUnspecified: true }],
     'curly': ['error', 'multi-line', 'consistent'],
     'default-case': ['error', {
@@ -224,10 +224,9 @@ module.exports = {
     // 'max-lines': 0,
     // 'max-nested-callbacks': 0,
     'max-params': ['error', 4],
-    // 'max-statements': 0,
-    // 'max-statements-per-line': 0,
-    // 'multiline-ternary': 0, // TODO(philipwalton): add a rule to enforce the
-    // operator appearing at the end of the line.
+    'max-statements': ['error', 10, { ignoreTopLevelFunctions: true }],
+    'max-statements-per-line': ['error', { max: 2 }],
+    'multiline-ternary': ['error', 'never'],
     'new-cap': 'error',
     // 'new-parens': 0,
     // 'newline-per-chained-call': 0,
@@ -235,7 +234,7 @@ module.exports = {
     // 'no-bitwise': 0,
     // 'no-continue': 0,
     // 'no-inline-comments': 0,
-    // 'no-lonely-if': 0,
+    'no-lonely-if': 'error',
     // 'no-mixed-operators': 0,
     'no-mixed-spaces-and-tabs': 'error', // eslint:recommended
     // 'no-multi-assign': 0,

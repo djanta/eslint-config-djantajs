@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.3] - 2018-06-09
+### Added
+- Implementing additional rules such as `max-statements, no-lonely-if, etc...`
+
+### Changed
+- Increase the eslint rule `complexity` from `4` to `10`
+
 ## [0.1.2] - 2018-06-08
 ### Added
 - Add codeclimate `Maintainability` and `Test Coverage` badges
