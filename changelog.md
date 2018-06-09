@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.1.3] - 2018-06-09
+## [0.2.0] - 2018-06-09
 ### Added
 - Implementing additional rules such as `max-statements, no-lonely-if, etc...`
 
@@ -53,8 +53,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial public version publication.
 - Fixing travis configuration *skip_cleanup: true*
 
-[Unreleased]: https://github.com/djanta/eslint-config-djantajs/compare/v0.1.3...HEAD
-[0.1.3]: https://github.com/djanta/eslint-config-djantajs/compare/v0.1.2...v0.1.3
+[Unreleased]: https://github.com/djanta/eslint-config-djantajs/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/djanta/eslint-config-djantajs/compare/v0.1.2...v0.2.0
 [0.1.2]: https://github.com/djanta/eslint-config-djantajs/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/djanta/eslint-config-djantajs/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/djanta/eslint-config-djantajs/compare/v0.0.2...v0.1.0
