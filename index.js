@@ -226,7 +226,7 @@ module.exports = {
     'max-params': ['error', 4],
     'max-statements': ['error', 10, { ignoreTopLevelFunctions: true }],
     'max-statements-per-line': ['error', { max: 2 }],
-    'multiline-ternary': ['error', 'never'],
+    'multiline-ternary': ['error', 'always-multiline'],
     'new-cap': 'error',
     // 'new-parens': 0,
     // 'newline-per-chained-call': 0,
