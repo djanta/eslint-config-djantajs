@@ -18,13 +18,15 @@ before_install:
   - bash ~/travis-npm-deploy/deploy.sh --git-config
 install:
   - bash ~/travis-npm-deploy/deploy.sh --install
+  - 'echo "repo_token: $COVERALLS_REPO_TOKEN" > "./.coveralls.yml"'
   - npm i --verbose
 script:
+  - "./node_modules/.bin/snyk auth $SNYK_TOKEN"
   - npm test
-  - npm run-script cover
+  - npm run-script coverage
 after_script:
-  - npm run-script codeclimate-publish
-  - npm run-script coveralls-publish
+  - npm run-script coverage-publish
+  - npm run-script snyk-publish
 after_success:
   - echo "Running after success step ..."
 before_deploy:
@@ -51,7 +53,7 @@ notifications:
         by %{author} %{result} in %{duration}
   webhooks:
     urls:
-      - $WEBHOOK_GITTER
+      - "$WEBHOOK_GITTER"
     on_success: change
     on_failure: always
     on_start: never
@@ -62,3 +64,5 @@ env:
     - secure: mzX/qjaVAVXQi6YddKNLIm/P8sIhlhKbQmj/yJTkFJ+tjbTgUJ2w2N5rFu7CLKa5BqEF5rXKw1D0LZSXid/0CrKgFAAvvDnX+yoyEhaQKgPGgRF8o6EK3+J7l057/kYeRDbk7c81f15+wakmgd5fnEOLb8kGNG5hz5L1B/fIrJhhZhqJy56x4dyfP3/pkYRNWOTHJ8AFM6RMwnH3K5t7UFXHnomqJumE6pSeziHVtBzU2vlDMpNUj8QdbX6RY+EhRnpUktYSeTJr0ykiw4rSyI6TnaepNQSMfxTiVP+YXDtBj+vMA02RgZipHshwSeLmmOzUk0x3+agrCBw/YMqD6Jw/oMX8jJfQM0p0ygVb4wef1+2hgIM6JRUhgEYVFxC2RxSGfX1IPCYGTs322l923ysSRSLeUVpJqjzKncRkdlXalzcyFDkjya0TofbUfOjAcBg5qY7vWR3Q+H0KXEAKHs0XtAzyRA5/963JvCPwCvdgnYmOGNR7J7OkBrmM5qyXQq89yVOqZWie4pLDJopOrKXDQwAs4QZabkLMdmuXg0jYLtQnTicpwjaC5xZdksoKsiU8r3ys/b2Bs04O6/vV1JBaCDMgOjCL70G8f1rWSS1jQmn0HNofoRcDImj/mdt1r/fRqjuRQZD3Nl8DZgYwFLLdmfSn40Xr4IBC/LSBeL0=
     - secure: RRCzieFrWuO85yx8OtYM7JqEWDbWgkxOrAclHWLaH+578HL88+WAKEdgY5vDkn2LM7KWlOh2WWno8EWX3dthHXBQ2rypgkW5QVgHYBYTF6FZSB9aOlN+spOXBg03xWxf89IJAUyMQDF86BEgrFHaWAKEKZlh5IliwjFMmKXa/4EYO1cWrspYGefnrDxEVsOS495f1Mn6PJujTD5OD/KIa/QnlsdR4xDJjqxIEJPMD2/6nUzWKoNuz3HpTXSpI1FLeN1UalzVMWGhu/X79ir783TuEzIYi2qDDmCgoUlRaLYe9uVgGrzBRpskReuXpHIytWcVKMRaXy7nib5n2Lgv9+MAPtgm8VLhrxnvA0LSre85+tqKQfjJf8XQ9BpyPMVOxBstNsSWlQ1foeAOcpJpffs7m8+ntIOC7Tt1gkwHxi1JFqVA7vHIgIokA/fHs4WYqwKKVinwjLHxUvRxcB1RtobDv9KI1RiI9v8dv/JvhYKqaEOMKOHrhMC/gjnspuL3hRJhslmxTotKoPNQ2A0W8a0FUUn08jAitnJTP2SX+sMviCJiAG79GTjBDkhoYQnTUahPRxIn9MZeABLnTZDttD/JpD97c5UeWnud6DugwwR9w5cEzkaLgwNvafaFCTnCqNdcUYarI+bS1oViuDXEXs+PdaLhY1SQ+djiCiAJYJo=
     - secure: F69U+SwWXhv0nCeVsqYmQHHvjUtjUCJESMgAYubhZ5aYM6nfjPFl3fwZ4s7/ZAr+pAVDtze7ewPgXonzLpE5L/Ij/ykGiTniuVVimRETKeJy1I05y+dJeYK0LCCuKV0TMN0ApqyuvWxbeOYmrUpPkPGwCLHJfGsPODblHZ3XidpWJ2ZiGT4s34Nu3p68z5ZIdF2Sqr7aGlwlZKORZTHrRETi9yDmNWat4K+TwL2HFLooiy/sUBDsISlHM3K7u2Sev/P/7dMzDDM6SXJleIYhxo1YmnTmhRO5yD9xyTKTMlIRAsr7DAKfMdnEwxg4rw2RUqr//uR3PWzNNy+Ln5vyV+CaRO5Do++F1OEYhxoekYVjYt11oRIUX+NZlzK/pC6RdQ6w49DCXyLZsR4PoEgPFvDCzWajfPe9JcLyi/ZZX8+/4cE+NntUA5fszw/uT7+wA6Ol0s0FzKJ9DoiIwblVbI636wkYDi3xm7GCyRaPkxbRLjKfag7ucbPjBEHbvVnOqEA8jr0neB6KUsqfJG0uIO24Kpinkw88X01XYmS0/EnSThYoiRgUOIMCIBeykhtW4H393F4/M4W5yArACLJwAvxnjgQp9XGzuasqrxZ5qW28ntF2fBr5v6Rbsg6JQI81xcxkL1jryEoUO5w0AD29ifns/XTlj3Vt+cVS9YMk92o=
+    - secure: cJEsv6ixjFJSl9YnaG6EnWzCHbeU7Bpxl5jz5fu3uASAVQkbgvlSC9HxW2DrAKObJFVDFW+bX1v1jYPWLOFzHF92BNC5XUJfPiDwkxSx9XpCTIfmbSTPUje7wpdtDAHT+B5d7JdEA5JGNmOwd7CfPunSu/WufTy6wco2J6qTG9rBsixu9/ZMv5wvJcRxmRxEGMRRnhOb9Wqx0IJhPxGWQeXCicwpE+FKsIVDvFQ05chuoNvVAr9qqQKmdaMG+tLc3AlGNe1p7SCCjVjkteaL9Pn5zowoPGA/El92VPj02iVtcWlLWEwlciGrZbmPz3osBzeaRoJN1jVW2dYl++3BdSHg7aA1n3oTNEq87MfQxvX/nwF9X7AYKDyx1V530m60GTcPBzO3LUsWWRrPre9VOkovbWZIf/xRdqgymUI3c/xP2iJyIuVVfyyUb83lOcSPYP8c84L7AVRTkU+LooWdDB2agd9Lgixr2JAc0uX9NWDjXof2N3YUggD+5CuM6Sxika/t9fCob0FCV2vkburMRrdv35V4cb/5PbYorBiXL84iBJzqn10j/zvsU0NlmiZubXvV3HoPpbIGoruBLjaUYMrKn0WQd/bskYLeNn16VeJ+w3R9wR6oAUZLD09hZGURC7E65GkQ5jn6KbAF66FmQM1mIOjUyVXtcJiBYShyRIE=
+    - secure: LpcSU5lTSwdClTFB3E70Jp0/zWbiOKIdOvy7xcqZZaO9UT+okUhtQpiM4Dk82n38fJ62228MnpIOKXDiEn66uxDO+A2smRKCrwl6eblSFboZPod4C+IXsdNhONK5ZleD9SwCNcAljvtSEqbNbG31mxOYB7bQAgWmtYnlROb6gksXmzCsLFeFQMeVqKpRWUBLSQ/vk5oE1Gzgf4p5fPax6qftOHXxWmhKt+CPhYEO7u4LTb7xt9RmIZGgsIOvtpeelm1gUzi7bOLbT5oH3DzIPjZCb2sXyZty5sQmhCMeVE5IlWB28jVEg9vquzzEw35cJa0gArUu2vd60H6gQD46Wi5H2niu3MLkx4hgXy7gLHqx7FxgWurNwXx4H7Nxo2uv2rQQiIXszmQ1R87h9MI+H3jWpD9OkBON86JVY1FTtxcWEuhIrQNZZ/8jNfEInzJuXLvOTcM+GR59/R486rNUBxFnAFgEVdGtY3gSxDyGpn+YXtYlh1hLYns8wKGks9F1WEQREEPSW9o8Pc75ly2FfxN+1l0HOUe+pDOFkZKu8oPspKAXv0qeJJPMGgy2Tdf1G6fI5dsRDAC7EcfDIjID8hPGa4+8H1eNgydtmBoXnFqzisJTEl+FqLKQL2Zh4ZJuAHBu9R9dImD4kZtcKxyAjLUcgzzlYJGPzK75gMdQfvU=
