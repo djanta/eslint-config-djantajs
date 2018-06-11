@@ -18,10 +18,10 @@ before_install:
   - bash ~/travis-npm-deploy/deploy.sh --git-config
 install:
   - bash ~/travis-npm-deploy/deploy.sh --install
-  - 'echo "repo_token: $COVERALLS_REPO_TOKEN" > "./.coveralls.yml"'
   - npm i --verbose
+  - 'echo "repo_token: $COVERALLS_REPO_TOKEN" > "./.coveralls.yml"'
+  - npm run-script snyk-login
 script:
-  - "./node_modules/.bin/snyk auth $SNYK_TOKEN"
   - npm test
   - npm run-script coverage
 after_script:
@@ -45,8 +45,8 @@ notifications:
   email: false
   slack:
     rooms:
-      - djantaio:1GeeSv1noSekK9to1yTqsbDw#travis-ci
-      - djantaio:1GeeSv1noSekK9to1yTqsbDw#tools
+      - "${SLACK_TRAVISCI_TOKEN}"#travis-ci
+      - "${SLACK_TRAVISCI_TOKEN}"#tools
     on_success: always
     template:
       - Build <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) of %{repository}@%{branch}
@@ -66,3 +66,4 @@ env:
     - secure: F69U+SwWXhv0nCeVsqYmQHHvjUtjUCJESMgAYubhZ5aYM6nfjPFl3fwZ4s7/ZAr+pAVDtze7ewPgXonzLpE5L/Ij/ykGiTniuVVimRETKeJy1I05y+dJeYK0LCCuKV0TMN0ApqyuvWxbeOYmrUpPkPGwCLHJfGsPODblHZ3XidpWJ2ZiGT4s34Nu3p68z5ZIdF2Sqr7aGlwlZKORZTHrRETi9yDmNWat4K+TwL2HFLooiy/sUBDsISlHM3K7u2Sev/P/7dMzDDM6SXJleIYhxo1YmnTmhRO5yD9xyTKTMlIRAsr7DAKfMdnEwxg4rw2RUqr//uR3PWzNNy+Ln5vyV+CaRO5Do++F1OEYhxoekYVjYt11oRIUX+NZlzK/pC6RdQ6w49DCXyLZsR4PoEgPFvDCzWajfPe9JcLyi/ZZX8+/4cE+NntUA5fszw/uT7+wA6Ol0s0FzKJ9DoiIwblVbI636wkYDi3xm7GCyRaPkxbRLjKfag7ucbPjBEHbvVnOqEA8jr0neB6KUsqfJG0uIO24Kpinkw88X01XYmS0/EnSThYoiRgUOIMCIBeykhtW4H393F4/M4W5yArACLJwAvxnjgQp9XGzuasqrxZ5qW28ntF2fBr5v6Rbsg6JQI81xcxkL1jryEoUO5w0AD29ifns/XTlj3Vt+cVS9YMk92o=
     - secure: cJEsv6ixjFJSl9YnaG6EnWzCHbeU7Bpxl5jz5fu3uASAVQkbgvlSC9HxW2DrAKObJFVDFW+bX1v1jYPWLOFzHF92BNC5XUJfPiDwkxSx9XpCTIfmbSTPUje7wpdtDAHT+B5d7JdEA5JGNmOwd7CfPunSu/WufTy6wco2J6qTG9rBsixu9/ZMv5wvJcRxmRxEGMRRnhOb9Wqx0IJhPxGWQeXCicwpE+FKsIVDvFQ05chuoNvVAr9qqQKmdaMG+tLc3AlGNe1p7SCCjVjkteaL9Pn5zowoPGA/El92VPj02iVtcWlLWEwlciGrZbmPz3osBzeaRoJN1jVW2dYl++3BdSHg7aA1n3oTNEq87MfQxvX/nwF9X7AYKDyx1V530m60GTcPBzO3LUsWWRrPre9VOkovbWZIf/xRdqgymUI3c/xP2iJyIuVVfyyUb83lOcSPYP8c84L7AVRTkU+LooWdDB2agd9Lgixr2JAc0uX9NWDjXof2N3YUggD+5CuM6Sxika/t9fCob0FCV2vkburMRrdv35V4cb/5PbYorBiXL84iBJzqn10j/zvsU0NlmiZubXvV3HoPpbIGoruBLjaUYMrKn0WQd/bskYLeNn16VeJ+w3R9wR6oAUZLD09hZGURC7E65GkQ5jn6KbAF66FmQM1mIOjUyVXtcJiBYShyRIE=
     - secure: LpcSU5lTSwdClTFB3E70Jp0/zWbiOKIdOvy7xcqZZaO9UT+okUhtQpiM4Dk82n38fJ62228MnpIOKXDiEn66uxDO+A2smRKCrwl6eblSFboZPod4C+IXsdNhONK5ZleD9SwCNcAljvtSEqbNbG31mxOYB7bQAgWmtYnlROb6gksXmzCsLFeFQMeVqKpRWUBLSQ/vk5oE1Gzgf4p5fPax6qftOHXxWmhKt+CPhYEO7u4LTb7xt9RmIZGgsIOvtpeelm1gUzi7bOLbT5oH3DzIPjZCb2sXyZty5sQmhCMeVE5IlWB28jVEg9vquzzEw35cJa0gArUu2vd60H6gQD46Wi5H2niu3MLkx4hgXy7gLHqx7FxgWurNwXx4H7Nxo2uv2rQQiIXszmQ1R87h9MI+H3jWpD9OkBON86JVY1FTtxcWEuhIrQNZZ/8jNfEInzJuXLvOTcM+GR59/R486rNUBxFnAFgEVdGtY3gSxDyGpn+YXtYlh1hLYns8wKGks9F1WEQREEPSW9o8Pc75ly2FfxN+1l0HOUe+pDOFkZKu8oPspKAXv0qeJJPMGgy2Tdf1G6fI5dsRDAC7EcfDIjID8hPGa4+8H1eNgydtmBoXnFqzisJTEl+FqLKQL2Zh4ZJuAHBu9R9dImD4kZtcKxyAjLUcgzzlYJGPzK75gMdQfvU=
+    - secure: GGM5tam7mLhbBg5RTBTUvbJhm4xkRzMUdC7ccfAcqabe43pDp8D7EHa6Ay6WTPvEojRhFrGBmHxKyajDuyXTYtn/4pJqIOsLyYZSAnvKG1uYldEfOno+VqNhIx4TYmrP3khyUVZ8Lpy2aMWBst7X1nqJvw0yB+mtyA6VfSaPu5N69aWfKF4E5WZpkqeFFlSYtYuLFh1ixXX2oPqxidDsyDu7G8s5kQhFovzsbMorXx6ZprLuoLucjtf5w9zUPTar8u/UhaYCyb70D3o29NWAguWbJqXONQOE9IagtIpqb8CVIacu+hW56WWangZzdSDOAT55Lq0hxLZZfNvzaZHrqf/nJDCb63mNNixiyJOLxhVTT1JYFlcdtrgFe7oxNTlMyOZHgZOLa9XlUrZZCXPbneSrI1kyzewZ+DjyMPXA1mWHsO2R4xyIJuE21OW9YuFaXipZQ2+vUJr9d/lYQfEsJivp9aG6BaqTJQEZ/VOkCtl3cBHTMRuZh3juvDm2qeuqXhtn4z3b5yug9EOOI/vp/fGjGoay1fb7BzHFrfwtAmkiO+VCHKYCENgrUGZcJUXJpVU8rSRnoWA42yJKtjx41h5rP9iNeCWvCBbzle359p3VUiM17huAuMB1sNVhJTsMxgtLh4ngCQyl4Ttu8vnqGXWGbXJlWD8W2KEkV+fQFEU=

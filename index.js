@@ -102,7 +102,7 @@ module.exports = {
     'no-fallthrough': ['error', { commentPattern: 'break[\\s\\w]*omitted' }],
     'no-floating-decimal': 'error',
     // 'no-global-assign': 0,
-    'no-implicit-coercion': ['error', { allow: ['!!', '~'] }],
+    'no-implicit-coercion': ['error', { allow: ['!!', '~', '+'] }],
     // 'no-implicit-globals': 0,
     // 'no-implied-eval': 0,
     'no-invalid-this': 'error',

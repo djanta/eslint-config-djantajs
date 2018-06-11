@@ -47,12 +47,13 @@
     "snyk": "^1.82.1"
   },
   "scripts": {
-    "test": "./node_modules/.bin/_mocha ./test/**/**/*.spec.js --recursive --timeout 360 --expose-gc --colors",
-    "coverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -R spec ./test/*",
+    "test": "npm run snyk && ./node_modules/.bin/_mocha ./test/**/**/*.spec.js --recursive --timeout 360 --expose-gc --colors",
+    "coverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/.bin/_mocha -- -R spec ./test/*",
     "coveralls-publish": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-    "codeclimate-publish": "./node_modules/mocha/bin/codeclimate-test-reporter < ./coverage/lcov.info",
+    "codeclimate-publish": "./node_modules/.bin/codeclimate-test-reporter < ./coverage/lcov.info",
     "coverage-publish": "npm run coveralls-publish && npm run codeclimate-publish",
     "snyk": "./node_modules/.bin/snyk test --file=./package.json",
+    "snyk-login": "./node_modules/.bin/snyk auth $SNYK_TOKEN",
     "snyk-monitor": "./node_modules/.bin/snyk monitor --file=./package.json",
     "snyk-publish": "./node_modules/.bin/snyk wizard --file=./package.json",
     "bump-dry": "./node_modules/.bin/grunt bump --dry-run",
