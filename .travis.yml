@@ -28,7 +28,7 @@ after_script:
   - npm run-script coverage-publish
 after_success:
   - echo "Publishing snyk monitoring snapshot"
-  - npm run-script snyk-publish
+  - npm run-script snyk-monitor
 before_deploy:
   - bash ~/travis-npm-deploy/deploy.sh login --user=$NPM_USER --password=$NPM_PWD --email=$NPM_EMAIL
 deploy:
