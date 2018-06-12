@@ -6,7 +6,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/djanta/eslint-config-djantajs/badge.svg?branch=master)](https://coveralls.io/github/djanta/eslint-config-djantajs?branch=master)
 [![Maintainability](https://api.codeclimate.com/v1/badges/ae5094e3adb2ae9f6cee/maintainability)](https://codeclimate.com/github/djanta/eslint-config-djantajs/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/ae5094e3adb2ae9f6cee/test_coverage)](https://codeclimate.com/github/djanta/eslint-config-djantajs/test_coverage)
-[![Known Vulnerabilities](https://snyk.io/test/github/djanta/eslint-config-djantajs/badge.svg)](https://snyk.io/test/github/djanta/eslint-config-djantajs)
+[![Known Vulnerabilities](https://snyk.io/test/npm/eslint-config-djantajs/badge.svg)](https://snyk.io/test/npm/eslint-config-djantajs)
 [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg?style=flat)](https://gitter.im/djantajs/tools?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 > djantajs shared coding style

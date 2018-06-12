@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.1] - 2018-06-12
+### Changed
+- Switch  `snyk` vulnerability check from `Github` repo to `npm` package.
+
 ## [1.1.0] - 2018-06-11
 ### Added
 - Introducing `snyk` for dependencies vulnerability check
@@ -76,7 +80,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial public version publication.
 - Fixing travis configuration *skip_cleanup: true*
 
-[Unreleased]: https://github.com/djanta/eslint-config-djantajs/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/djanta/eslint-config-djantajs/compare/v1.1.1...HEAD
+[1.1.1]: https://github.com/djanta/eslint-config-djantajs/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/djanta/eslint-config-djantajs/compare/v1.0.1...v1.1.0
 [1.0.1]: https://github.com/djanta/eslint-config-djantajs/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/djanta/eslint-config-djantajs/compare/v0.2.1...v1.0.0
