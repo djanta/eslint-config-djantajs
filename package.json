@@ -43,8 +43,7 @@
     "grunt": "^1.0.2",
     "coveralls": "^3.0.1",
     "istanbul": "^0.4.5",
-    "codeclimate-test-reporter": "^0.5.0",
-    "snyk": "^1.82.1"
+    "codeclimate-test-reporter": "^0.5.0"
   },
   "scripts": {
     "test": "npm run snyk && ./node_modules/.bin/_mocha ./test/**/**/*.spec.js --recursive --timeout 360 --expose-gc --colors",
@@ -65,6 +64,12 @@
     "bump-prepatch": "./node_modules/.bin/grunt bump:prepatch",
     "bump-prerelease": "./node_modules/.bin/grunt bump:prerelease",
     "bump-preminor": "./node_modules/.bin/grunt bump:preminor",
-    "bump-premajor": "./node_modules/.bin/grunt bump:premajor"
+    "bump-premajor": "./node_modules/.bin/grunt bump:premajor",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
+  },
+  "snyk": true,
+  "dependencies": {
+    "snyk": "^1.85.0"
   }
 }
