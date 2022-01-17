@@ -36,15 +36,14 @@
   "devDependencies": {
     "es6-promise-loader": "^1.0.1",
     "rimraf": "^2.5.2",
-    "eslint": "^4.1.1",
-    "mocha": "^5.0.3",
+    "eslint": "^7.0.0",
+    "mocha": "^6.2.3",
     "assert": "^1.4.1",
     "grunt-bump": "^0.8.0",
-    "grunt": "^1.0.2",
+    "grunt": "^1.3.0",
     "coveralls": "^3.0.1",
     "istanbul": "^0.4.5",
-    "codeclimate-test-reporter": "^0.5.0",
-    "snyk": "^1.82.1"
+    "codeclimate-test-reporter": "^0.5.1"
   },
   "scripts": {
     "test": "npm run snyk && ./node_modules/.bin/_mocha ./test/**/**/*.spec.js --recursive --timeout 360 --expose-gc --colors",
@@ -65,6 +64,12 @@
     "bump-prepatch": "./node_modules/.bin/grunt bump:prepatch",
     "bump-prerelease": "./node_modules/.bin/grunt bump:prerelease",
     "bump-preminor": "./node_modules/.bin/grunt bump:preminor",
-    "bump-premajor": "./node_modules/.bin/grunt bump:premajor"
+    "bump-premajor": "./node_modules/.bin/grunt bump:premajor",
+    "prepare": "npm run snyk-protect",
+    "snyk-protect": "snyk-protect"
+  },
+  "snyk": true,
+  "dependencies": {
+    "@snyk/protect": "latest"
   }
 }
